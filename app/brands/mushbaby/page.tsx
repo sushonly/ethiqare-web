@@ -4,20 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import MushBabyElephant from '@/components/mushbaby/MushBabyElephant'
-import Packaging3D from '@/components/mushbaby/Packaging3D'
+import MushBabyHero from '@/components/mushbaby/MushBabyHero'
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 
 const WA_BASE = 'https://wa.me/919033322244?text='
 const AMZ_URL = 'https://www.amazon.in/s?k=mushbaby+ethiqare'
-
-const TRUST_BADGES = [
-  { label: 'No Parabens', pink: true },
-  { label: 'No Sulphates', pink: false },
-  { label: 'No Toxins', pink: true },
-  { label: 'pH 5.5', pink: false },
-  { label: 'Safe 2 months+', pink: false },
-] as const
 
 const WHATS_INSIDE = [
   {
@@ -29,7 +21,7 @@ const WHATS_INSIDE = [
   {
     emoji: '🫒',
     name: 'Olive Oil',
-    description: 'Deeply moisturizes and helps maintain the skin\'s natural protective barrier.',
+    description: "Deeply moisturizes and helps maintain the skin's natural protective barrier.",
     products: 'Bar · Gel · Oil · Shampoo',
   },
   {
@@ -54,7 +46,7 @@ const WHY_CHOOSE_US = [
     iconBg: 'bg-mb-blue-pale border-mb-blue-light',
     title: 'pH 5.5 Balanced',
     description:
-      'Perfectly matched to baby\'s delicate skin pH, maintaining the natural protective barrier every day.',
+      "Perfectly matched to baby's delicate skin pH, maintaining the natural protective barrier every day.",
     highlight: false,
   },
   {
@@ -278,77 +270,8 @@ export default function MushBabyPage() {
 
   return (
     <>
-      {/* ── HERO ──────────────────────────────────────────── */}
-      <section
-        id="packaging"
-        className="relative pt-6 pb-8 lg:pt-8 lg:pb-10 px-4 sm:px-6 lg:px-8 bg-mb-pink-pale overflow-x-hidden"
-      >
-        <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-mb-pink/20 blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-mb-blue/15 blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6 lg:gap-8 items-center relative z-10">
-          <div className="text-center lg:text-left order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 bg-white/80 border border-mb-pink-light rounded-full px-3 py-1 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-mb-pink" />
-              <span className="text-[10px] font-800 text-mb-pink-deep uppercase tracking-[0.2em]">
-                MushBaby · by Ethiqare
-              </span>
-            </div>
-
-            <SectionLabel>Introducing MushBaby</SectionLabel>
-
-            <h1 className="font-display font-800 text-3xl sm:text-4xl lg:text-[2.6rem] text-mb-navy leading-[1.08] mb-2">
-              One Bar.{' '}
-              <span className="text-mb-pink">All the Gentleness.</span>
-            </h1>
-
-            <p className="text-sm sm:text-base text-mb-gray leading-relaxed mb-3 max-w-md mx-auto lg:mx-0">
-              Crafted with Coconut Oil, Olive Oil &amp; Shea Butter — pure ingredients your
-              baby&apos;s skin will love, every single bath.
-            </p>
-
-            <p className="text-sm italic font-600 text-mb-blue mb-4">
-              &ldquo;Gentle by Nature. Trusted by Love.&rdquo;
-            </p>
-
-            <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 mb-4">
-              {TRUST_BADGES.map(({ label, pink }) => (
-                <span
-                  key={label}
-                  className={`text-[11px] font-700 px-2.5 py-1 rounded-full border ${
-                    pink
-                      ? 'bg-mb-pink-light border-mb-pink text-mb-pink-deep'
-                      : 'bg-mb-blue-light border-mb-blue text-mb-navy'
-                  }`}
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap justify-center lg:justify-start gap-2">
-              <a
-                href={`${WA_BASE}${encodeURIComponent("Hi! I'd like to order MushBaby Bathing Bar.")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1da851] text-white font-800 px-4 py-2.5 rounded-full text-sm transition-colors"
-              >
-                💬 Order on WhatsApp
-              </a>
-              <Link
-                href="#products"
-                className="inline-flex items-center gap-1.5 bg-mb-blue hover:bg-mb-blue-deep text-white font-800 px-4 py-2.5 rounded-full text-sm transition-colors"
-              >
-                Shop MushBaby →
-              </Link>
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-center min-w-0 overflow-visible">
-            <Packaging3D />
-          </div>
-        </div>
-      </section>
+      {/* ── HERO + CERT STRIP ─────────────────────────────── */}
+      <MushBabyHero />
 
       {/* ── OUR RANGE OF PRODUCTS ─────────────────────────── */}
       <section id="products" className="py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white scroll-mt-20">
@@ -490,7 +413,7 @@ export default function MushBabyPage() {
           {[
             { icon: '🌿', label: 'Natural Ingredients',     sub: 'Coconut · Olive · Shea' },
             { icon: '🔬', label: 'Dermatologically Tested', sub: 'pH 5.5 · Clinically safe' },
-            { icon: '🇮🇳', label: 'Made in India',           sub: 'Ethiqare, Gujarat' },
+            { icon: '🇮🇳', label: 'Made in India',           sub: 'Ethiqare, Gujarat'        },
             { icon: '❤️', label: 'Safe from 2 Months',      sub: 'Gentle for delicate skin' },
           ].map(({ icon, label, sub }) => (
             <div key={label} className="text-white px-2">
