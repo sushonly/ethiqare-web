@@ -3,14 +3,6 @@ import Link from 'next/link'
 import MushBabyElephant from '@/components/mushbaby/MushBabyElephant'
 import type { Product } from '@/lib/types'
 
-const RANGE_PRODUCTS = [
-  { name: 'Bathing Bar', size: '75g', match: /bathing bar|bar/i },
-  { name: 'Baby Shower Gel', size: '200 ml', match: /shower gel|gel/i },
-  { name: 'Baby Body Oil', size: '200 ml', match: /body oil/i },
-  { name: 'Baby Moisturizer', size: '200 ml', match: /moistur/i },
-  { name: 'Baby Shampoo', size: '200 ml', match: /shampoo/i },
-] as const
-
 const OTHER_BRANDS = [
   {
     icon: '💊',
@@ -26,49 +18,7 @@ const OTHER_BRANDS = [
   },
 ] as const
 
-function findProduct(products: Product[], match: RegExp): Product | undefined {
-  return products.find(p => match.test(p.name))
-}
-
-function RangeProductCard({
-  label,
-  size,
-  product,
-}: {
-  label: string
-  size: string
-  product?: Product
-}) {
-  return (
-    <div className="flex flex-col items-center text-center group">
-      <div className="relative w-full aspect-[3/4] max-w-[140px] sm:max-w-[160px] bg-white rounded-2xl border border-mb-blue-light shadow-sm overflow-hidden mb-3 group-hover:shadow-md group-hover:border-mb-blue transition-all">
-        {product?.image_url ? (
-          <Image
-            src={product.image_url}
-            alt={label}
-            fill
-            className="object-contain p-2"
-            sizes="160px"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-b from-mb-blue-pale to-white pb-3">
-            <MushBabyElephant width={56} height={62} showBeachBalls={false} className="opacity-70" />
-          </div>
-        )}
-      </div>
-      <p className="font-display font-800 text-xs sm:text-sm text-mb-navy leading-tight">{label}</p>
-      <p className="text-[10px] text-mb-gray font-600 mt-0.5">{size}</p>
-    </div>
-  )
-}
-
 export default function PortfolioSection({ products }: { products: Product[] }) {
-  const rangeItems = RANGE_PRODUCTS.map(({ name, size, match }) => ({
-    name,
-    size,
-    product: findProduct(products, match),
-  }))
-
   return (
     <section id="portfolio" className="bg-eq-off-white relative z-10">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-[6%] py-20 lg:py-24">
@@ -113,31 +63,29 @@ export default function PortfolioSection({ products }: { products: Product[] }) 
             </Link>
           </div>
 
-          {/* Range of Products */}
           <div className="px-4 sm:px-8 lg:px-12 pb-8 sm:pb-10">
             <div className="text-center mb-6 sm:mb-8">
               <p className="text-[11px] font-800 uppercase tracking-[0.25em] text-mb-pink-deep mb-1">
                 Complete Baby Care Range
               </p>
               <h4 className="font-display font-800 text-2xl sm:text-3xl text-mb-navy">
-              Everything Your Baby Needs — From Head to Toe   </h4>
+                Everything Your Baby Needs — From Head to Toe
+              </h4>
             </div>
 
-            {/* Full range visual — matches reference lineup */}
             <div className="relative w-full max-w-6xl mx-auto mb-8 sm:mb-10 overflow-hidden rounded-3xl bg-white shadow-xl shadow-mb-blue/10 border border-mb-blue-light/30">
               <Image
-                 src="https://ibqvhzfagbhgfczekufv.supabase.co/storage/v1/object/public/product-images/mushbaby-range-banner.png"
+                src="https://ibqvhzfagbhgfczekufv.supabase.co/storage/v1/object/public/product-images/mushbaby-range-banner.png"
                 alt="MushBaby Complete Baby Care Range"
                 width={1600}
                 height={900}
-                 className="w-full h-auto object-contain rounded-2xl"
-                
+                className="w-full h-auto object-contain rounded-2xl"
                 priority={false}
               />
             </div>
+          </div>
+        </div>
 
-         
-            </div>
         {/* Other brands — all coming soon */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {OTHER_BRANDS.map(({ icon, name, category, desc }) => (
