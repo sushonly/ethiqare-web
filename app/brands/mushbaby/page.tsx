@@ -8,7 +8,7 @@ import MushBabyHero from '@/components/mushbaby/MushBabyHero'
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 
-const WA_BASE = 'https://wa.me/919033322244?text='
+const WA_BASE = 'https://wa.me/919033322244?text=' 
 const AMZ_URL = 'https://www.amazon.in/s?k=mushbaby+ethiqare'
 
 
