@@ -124,7 +124,7 @@ export default function PortfolioSection({ products }: { products: Product[] }) 
             </div>
 
             {/* Full range visual — matches reference lineup */}
-            <div className="relative w-full max-w-6xl mx-auto mb-8 sm:mb-10 overflow-hidden rounded-3xl bg-white shadow-xl shadow-mb-blue/10 border border-mb-blue-light/30"></div>
+            <div className="relative w-full max-w-6xl mx-auto mb-8 sm:mb-10 overflow-hidden rounded-3xl bg-white shadow-xl shadow-mb-blue/10 border border-mb-blue-light/30">
               <Image
                  src="https://ibqvhzfagbhgfczekufv.supabase.co/storage/v1/object/public/product-images/mushbaby-range-banner.png"
                 alt="MushBaby Complete Baby Care Range"
